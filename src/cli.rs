@@ -1,3 +1,4 @@
+/// Module for handling the CLI parsing
 use clap::{Parser, ValueEnum};
 
 // Enum for the format options available in the CLI
@@ -22,7 +23,7 @@ pub struct Cli {
 
     /// Output PNG file
     #[arg(long, value_name = "PNG_FILE", help = "Path to the output PNG file")]
-    pub output: Option<String>,
+    pub output: Option<String>, // Option because this is an optional argument.
 
     #[arg(
         long,

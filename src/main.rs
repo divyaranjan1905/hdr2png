@@ -7,6 +7,7 @@ mod encode;
 fn main() -> ImageResult<()> {
     let cli_args = cli::Cli::parse();
     let hdr_path = Path::new(&cli_args.input);
+    // Parses the (optional) output argument if it is provided, otherwise just replace the .hdr with .png in the input argument
     let output = cli_args
         .output
         .unwrap_or_else(|| cli_args.input.trim_end_matches(".hdr").to_owned() + ".png");
@@ -16,6 +17,8 @@ fn main() -> ImageResult<()> {
         Ok((hdr_rgb_float, dim_vec)) => {
             let width = dim_vec[0];
             let height = dim_vec[1];
+
+            // Encode the raw floats from HDR into RGBM
             let hdr_rgbm_float: Vec<_> = hdr_rgb_float
                 .iter()
                 .cloned()
