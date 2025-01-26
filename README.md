@@ -1,7 +1,4 @@
----
-title: hdr2png
-hide_table_of_contents: true
----
+# hdr2png
 
 `hdr2png` is a command-line tool that takes a HDR image file of Radiance (RGBE) format and encodes into a RGBM/A PNG file. It is primarily for asset creation and management in graphical computing environments, where speed, bit precision and compression are of high priority.
 
@@ -18,7 +15,7 @@ cargo build --release
 ```
 This would create a binary in the `target/release/` directory.
 
-# Usage
+## Usage
 
 The following help page details the arguments needed by the tool and its usage:
 
@@ -49,7 +46,7 @@ In the `img/hdr/` directory are some sample HDR files fetched from Greg Ward’s
 
 For comparison purposes, a proper HDR viewer is recommended such as [HDRView](https://wkjarosz.github.io/hdrview/) or [LuminanceHDR](https://github.com/LuminanceHDR/LuminanceHDR).
 
-# On Encodings of HDR & PNG
+## On Encodings of HDR & PNG
 
 Since its inception, HDR (or, Higher Dynamic Range) has been attempted to be encoded and formatted in many different ways. Among them, the one that really got popular and in widespread use was Gregory Ward Larson’s [RGBE](https://en.wikipedia.org/wiki/RGBE_image_format) format that became the defacto encoding system for the Radiance rendering engine, that Greg himself was the primary developer of. Thus current tool for now, **only encodes RGBE HDR format** ála Radiance.
 
@@ -59,11 +56,11 @@ Furthermore, it is to be noted that since in RGBM encoding you sacrifice the alp
 
 It is for the same reason, that if you encode a HDR with `hdr2png` in RGBM format it will be compressed to some extent, and opening it in a typical viewer wouldn’t show much. For this, one has to decode it into RGBA format using the `--format rgba` argument, which will provide a PNG that is _very_ much compressed but as we described, it is at the cost of bit precision and range.
 
-# Compression and Speed
+## Compression and Speed
 
 There hasn’t been conducted a proper benchmark of this tool, but from using it on the provided sample HDR files, it can encode a **1 megabyte** HDR into RGBM PNG in **0.0001328s**, and the final PNG is about **20-25%** smaller than the size of the original HDR. And in the case of RGBA, the final PNG is about **45-50%** smaller though it usually takes 0.002s longer in encoding.
 
-# References
+## References
 
 - http://www.anyhere.com/gward/hdrenc/pages/originals.html
 - http://www.anyhere.com/gward/hdrenc/hdr_encodings.html
