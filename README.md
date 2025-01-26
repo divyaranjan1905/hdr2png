@@ -1,5 +1,6 @@
 ---
 title: hdr2png
+hide_table_of_contents: true
 ---
 
 `hdr2png` is a command-line tool that takes a HDR image file of Radiance (RGBE) format and encodes into a RGBM/A PNG file. It is primarily for asset creation and management in graphical computing environments, where speed, bit precision and compression are of high priority.
