@@ -1,6 +1,6 @@
 # hdr2png
 
-`hdr2png` is a command-line tool that takes a HDR image file of Radiance (RGBE) format and encodes into a RGBM/A PNG file. It is primarily for asset creation and management in graphical computing environments, where speed, bit precision and compression are of high priority.
+`hdr2png` is a command-line tool that takes a HDR image file of Radiance (RGBE) format and encodes into a 8-bit RGBM/A PNG file. It is primarily for asset creation and management in graphical computing environments, where speed, bit precision and compression are of high priority.
 
 It is written entirely in Rust, tries to be minimal in its dependencies, and is cross-platform across major operating systems.
 
@@ -50,7 +50,7 @@ For comparison purposes, a proper HDR viewer is recommended such as [HDRView](ht
 
 Since its inception, HDR (or, Higher Dynamic Range) has been attempted to be encoded and formatted in many different ways. Among them, the one that really got popular and in widespread use was Gregory Ward Larson’s [RGBE](https://en.wikipedia.org/wiki/RGBE_image_format) format that became the defacto encoding system for the Radiance rendering engine, that Greg himself was the primary developer of. Thus current tool for now, **only encodes RGBE HDR format** ála Radiance.
 
-For PNGs, the default format is that of RGBA (Red, Green, Blue, Alpha) but since HDR does not limit itself to this but rather has a whole _range_ that it captures, without special encoding a RGBA PNG loses much of the precision and range that a HDR has. This is where an encoding such as RGBM (Red, Green, Blue, Multiplier) becomes really crucial, since in this case you sacrifice the 4th alpha channel to store a multiplier which changes by every pixel, and as the name goes, it gets multiplied by the bits of RGB (alongwith another constant). This allows us to achieve much more bit precision and range than RGBA, while still being in the PNG format and thus getting it compressed.
+For PNGs, the default format is that of RGBA (Red, Green, Blue, Alpha) but since HDR does not limit itself to this but rather has a whole _range_ that it captures, without special encoding a RGBA PNG loses much of the precision and range that a HDR has. This is where an encoding such as RGBM (Red, Green, Blue, Multiplier) becomes really crucial, since in this case you sacrifice the 4th alpha channel to store a 8-bit multiplier which changes by every pixel, and as the name goes, it gets multiplied by the bits of RGB (alongwith another constant). This allows us to achieve much more bit precision and range than RGBA, while still being in the PNG format and thus getting it compressed.
 
 Furthermore, it is to be noted that since in RGBM encoding you sacrifice the alpha channel and since universally PNGs are used in RGBA format, if you open a PNG of the former kind in a viewer that only supports the latter, **you would see a distorted picture** with some parts being transparent and others not. **This is because the viewer treats the fourth channel as alpha, when it is clearly not that.**
 
