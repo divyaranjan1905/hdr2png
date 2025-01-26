@@ -7,7 +7,6 @@ edition = "2021"
 image = { version = "0.25.5", features = ["png", "hdr"] }
 rgbe = "0.0.1"
 clap = { version = "4.5.27", features = ["derive"] }
-rayon = "1.10.0"
 
 [[bin]]
 name = "hdr2png"
